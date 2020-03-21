@@ -1,9 +1,11 @@
 {-# LANGUAGE GADTs #-}
+{-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeOperators       #-}
-module Knit.Effect.Core
+module Knit.Kernmantle.Effect.Core
   (
-    LogEff(..)
+    KnitKleisli
+  , LogEff(..)
   ) where
 
 import qualified Control.Kernmantle.Rope as Rope
@@ -24,9 +26,17 @@ import qualified Data.Text as T
 type KnitMonad m = P.Sem (K.KnitEffectStack m)
 type KnitKleisli m a b = A.Kleisli (KnitMonad m) a b
 
+arrInSemCore :: (a -> KnitMonad m b) -> KnitKleisli m a b
+arrInSemCore = A.Kleisli 
+
+runInSemCore :: KnitMonad m a -> KnitKleisli m () a
+runInSemCore = arrInSemCore . const 
+
+
 -- The Logging Effect
 data LogEff a b where
   LogText :: LogEff (K.LogSeverity, T.Text) ()
   
 runLogEff :: LogEff a b -> KnitKleisli m a b
 runLogEff LogText = A.Kleisli $ uncurry K.logLE 
+
