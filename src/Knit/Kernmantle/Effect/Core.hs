@@ -16,7 +16,6 @@ import qualified Control.Arrow as A
 
 import qualified Data.Text as T
 
-
 -- Wrap the knit-haskell stack as a Kleisli arrow
 -- and then we
 -- can dispatch effects to it.  We wil slowly build

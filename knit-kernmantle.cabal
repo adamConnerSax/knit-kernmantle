@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5d0ff4fe41efaf293730a07b580ac647d90bcfb167dcccb5dcd8a071303c6747
+-- hash: 1db8345ef0fa8d5c7a564f6676efaf6bd564a4405dd2bc49272d2e066cf6cf5d
 
 name:           knit-kernmantle
 version:        0.1.0.0
@@ -41,6 +41,7 @@ source-repository head
 library
   exposed-modules:
       Knit.Kernmantle.Effect.Core
+      Knit.Kernmantle.Effect.Pandoc
       Knit.Kernmantle.Report
   other-modules:
       Paths_knit_kernmantle

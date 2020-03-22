@@ -12,6 +12,4 @@ import qualified Knit.Report as K
 
 import qualified Data.Text as T
 
-newPandoc :: K.PandocInfo -> KC.KnitKleisli m K.PandocWithRequirements ()
-newPandoc pandocInfo = KC.arrInSemCore (K.newPandoc pandocInfo)
 
